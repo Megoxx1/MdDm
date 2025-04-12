@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Business Plan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f3e8dd;
+      color: #3e3e3e;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0 10px 0;
+      background-color: #f6e5d6;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    header img {
+      height: 80px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 50px;
+      background-color: #f3e0cb;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #5e4b3c;
+      font-weight: 500;
+      margin: 0 10px;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #d17b52;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .business-box {
+      background-color: #fff6f0;
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid #e2cdbb;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+
+    .calculator {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 10px;
+      border: 1px solid #c9a58f;
+      width: 120px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #d17b52;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #b35c3e;
+    }
+
+    #result {
+      font-size: 1.4em;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #854b33;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="dndn.png"alt="Logo" />
+  </header>
+
+  <nav>
+    <div>
+      <a href="memories.html">Memories</a>
+      <a href="videos.html">Videos</a>
+      <a href="schedule.html">Study Schedule</a>
+      <a href="todo.html">To-Do</a>
+      <a href="movies.html">Movies</a>
+    </div>
+    <div>
+      <a href="music.html">Music</a>
+      <a href="stories.html">Stories</a>
+      <a href="files.html">Study Files</a>
+      <a href="dropshipping.html">Dropshipping</a>
+      <a href="business.html">Business</a>
+    </div>
+  </nav>
+
+  <section>
+    <h1>🚀 Our Business Plan</h1>
+
+    <div class="business-box">
+      <h3>📝 Vision</h3>
+      <p>Build a romantic, powerful brand — something meaningful we created together. Step by step, hand in hand 🤝.</p>
+    </div>
+
+    <div class="business-box">
+      <h3>💡 Product Ideas</h3>
+      <ul>
+        <li>Customized accessories (bracelets, phone cases)</li>
+        <li>Aesthetic room décor sets</li>
+        <li>Mini self-care kits</li>
+        <li>Planner & study bundles</li>
+      </ul>
+    </div>
+
+    <div class="business-box">
+      <h3>📈 Strategy</h3>
+      <ul>
+        <li>Designs on Canva</li>
+        <li>Marketing via Instagram & TikTok</li>
+        <li>Sell on Shopify or WhatsApp Business</li>
+      </ul>
+    </div>
+
+    <div class="calculator">
+      <h2>🧮 Money Collected</h2>
+      <p>Enter the values below (ex: monthly profits):</p>
+      <input type="number" id="input1" placeholder="Amount 1">
+      <input type="number" id="input2" placeholder="Amount 2">
+      <input type="number" id="input3" placeholder="Amount 3">
+      <br>
+      <button onclick="calculateTotal()">Calculate Total</button>
+      <div id="result"></div>
+    </div>
+  </section>
+
+  <script>
+    function calculateTotal() {
+      const val1 = parseFloat(document.getElementById("input1").value) || 0;
+      const val2 = parseFloat(document.getElementById("input2").value) || 0;
+      const val3 = parseFloat(document.getElementById("input3").value) || 0;
+
+      const total = val1 + val2 + val3;
+      document.getElementById("result").innerText = "💰 Total Collected: $" + total.toFixed(2);
+    }
+  </script>
+</body>
+</html>

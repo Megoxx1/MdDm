@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f3e8dd;
+      color: #3e3e3e;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .admin-section {
+      margin: 20px 0;
+    }
+
+    .admin-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .admin-section button {
+      background-color: #f6e5d6;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .admin-section button:hover {
+      background-color: #d17b52;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+
+    <div class="admin-section">
+      <h2>Manage Users</h2>
+      <button onclick="viewUsers()">View Users</button>
+    </div>
+
+    <div class="admin-section">
+      <h2>Manage Memories</h2>
+      <button onclick="addMemory()">Add Memory</button>
+      <button onclick="viewMemories()">View Memories</button>
+    </div>
+
+    <div class="admin-section">
+      <h2>Manage Videos</h2>
+      <button onclick="addVideo()">Add Video</button>
+      <button onclick="viewVideos()">View Videos</button>
+    </div>
+
+    <div class="admin-section">
+      <h2>Manage Study Schedule</h2>
+      <button onclick="editSchedule()">Edit Schedule</button>
+    </div>
+
+    <div class="admin-section">
+      <h2>Manage To-Do List</h2>
+      <button onclick="addTask()">Add Task</button>
+      <button onclick="viewTasks()">View Tasks</button>
+    </div>
+
+    <div class="admin-section">
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+  <script>
+    const auth = firebase.auth();
+
+    function logout() {
+      auth.signOut().then(() => {
+        window.location.href = 'admin_login.html'; // Redirect to login page
+      });
+    }
+
+    // Example functions for actions
+    function viewUsers() {
+      window.location.href = 'manage_users.html'; // Redirect to view users
+    }
+
+    function addMemory() {
+      window.location.href = 'add_memory.html'; // Redirect to add memory page
+    }
+
+    function viewMemories() {
+      window.location.href = 'view_memories.html'; // Redirect to view memories page
+    }
+
+    function addVideo() {
+      window.location.href = 'add_video.html'; // Redirect to add video page
+    }
+
+    function viewVideos() {
+      window.location.href = 'view_videos.html'; // Redirect to view videos page
+    }
+
+    function editSchedule() {
+      window.location.href = 'edit_schedule.html'; // Redirect to edit schedule page
+    }
+
+    function addTask() {
+      window.location.href = 'add_task.html'; // Redirect to add task page
+    }
+
+    function viewTasks() {
+      window.location.href = 'view_tasks.html'; // Redirect to view tasks page
+    }
+  </script>
+</body>
+</html>

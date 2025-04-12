@@ -1,0 +1,73 @@
+<!-- signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up - Md</title>
+  <style>
+    body {
+      background-color: #f5f1e6;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h2 { color: #b38b59; }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      width: 250px;
+    }
+    button {
+      background-color: #b38b59;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #d4a66a;
+    }
+  </style>
+</head>
+<body>
+  <h2>Create Your Md Account</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="signUp()">Sign Up</button>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+    import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA9Hn5f683KrvlLi89sfSRo2d26gQ4gjrE",
+      authDomain: "mdwebsite-f64f7.firebaseapp.com",
+      projectId: "mdwebsite-f64f7",
+      storageBucket: "mdwebsite-f64f7.appspot.com",
+      messagingSenderId: "695956316535",
+      appId: "1:695956316535:web:c7fd25299f694fd0eb0172",
+      measurementId: "G-JKBL2VNLXS"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.signUp = function() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          alert("Account created successfully!");
+          window.location.href = "home.html";
+        })
+        .catch((error) => {
+          alert("Error: " + error.message);
+        });
+    }
+  </script>
+</body>
+</html>

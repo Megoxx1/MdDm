@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music & Videos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f3e8dd;
+      color: #3e3e3e;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0 10px 0;
+      background-color: #f6e5d6;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    header img {
+      height: 80px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 50px;
+      background-color: #f3e0cb;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #5e4b3c;
+      font-weight: 500;
+      margin: 0 10px;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #d17b52;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .upload-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #f3e0cb;
+      cursor: pointer;
+    }
+
+    input[type="file"]:hover {
+      background-color: #d17b52;
+      color: white;
+    }
+
+    .video-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .video-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .video-item p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="dndn.png" alt="Logo" />
+  </header>
+
+  <nav>
+    <div>
+      <a href="memories.html">Memories</a>
+      <a href="videos.html">Videos</a>
+      <a href="schedule.html">Study Schedule</a>
+      <a href="todo.html">To-Do</a>
+      <a href="movies.html">Movies</a>
+    </div>
+    <div>
+      <a href="music.html">Music</a>
+      <a href="stories.html">Stories</a>
+      <a href="files.html">Study Files</a>
+      <a href="dropshipping.html">Dropshipping</a>
+      <a href="business.html">Business</a>
+    </div>
+  </nav>
+
+  <section>
+    <h1>🎥 Upload and Watch Your Videos</h1>
+
+    <!-- Upload Section -->
+    <div class="upload-container">
+      <input type="file" id="fileInput" accept="video/*" onchange="loadVideo(event)" />
+      <p>Upload your favorite videos (like your personal music videos or special creations)</p>
+    </div>
+
+    <!-- Video List Section -->
+    <div class="video-container" id="videoContainer">
+      <!-- Uploaded videos will appear here -->
+    </div>
+  </section>
+
+  <script>
+    function loadVideo(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      // Create a new video element
+      const video = document.createElement("video");
+      const videoContainer = document.createElement("div");
+      videoContainer.classList.add("video-item");
+
+      // Create a paragraph for the video name
+      const videoName = document.createElement("p");
+      videoName.textContent = file.name;
+
+      // Create the video player
+      video.controls = true;
+      video.src = URL.createObjectURL(file);
+
+      // Append elements
+      videoContainer.appendChild(videoName);
+      videoContainer.appendChild(video);
+
+      // Add the video to the video container
+      document.getElementById("videoContainer").appendChild(videoContainer);
+    }
+  </script>
+</body>
+</html>

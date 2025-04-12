@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favorite Messages - My Love</title>
+  <style>
+    body {
+      background-color: #fdf2f8;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #4a2c2a;
+    }
+
+    .header {
+      background-color: #ffe4ec;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .logo img {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      border: 4px solid #f78fb3;
+    }
+
+    .nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #b83b5e;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      padding: 40px 20px;
+      flex-wrap: wrap;
+    }
+
+    .side {
+      width: 45%;
+      min-width: 300px;
+      background-color: #fff0f5;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .side h2 {
+      text-align: center;
+    }
+
+    .message-box {
+      margin-top: 10px;
+    }
+
+    .message {
+      background-color: #ffe9f1;
+      border-left: 4px solid #f78fb3;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .message small {
+      display: block;
+      color: #888;
+      font-size: 12px;
+    }
+
+    button {
+      background-color: #f78fb3;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      margin-top: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button.edit-btn, button.delete-btn {
+      background-color: #ffb6c1;
+      margin-left: 5px;
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="showtime.html">Show Time</a>
+      <a href="memories.html">Memories</a>
+    </div>
+    <div class="logo">
+      <img src="dndn.png" alt="Logo" />
+    </div>
+    <div class="nav">
+      <a href="songs.html">Songs</a>
+      <a href="pictures.html">Pictures</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="side" id="my-side">
+      <h2>My Messages</h2>
+      <textarea id="my-msg" rows="3" placeholder="Type your message..."></textarea><br />
+      <button onclick="addMessage('me')">Send</button>
+      <div class="message-box" id="me-box"></div>
+    </div>
+
+    <div class="side" id="her-side">
+      <h2>Her Messages</h2>
+      <textarea id="her-msg" rows="3" placeholder="Type her message..."></textarea><br />
+      <button onclick="addMessage('her')">Send</button>
+      <div class="message-box" id="her-box"></div>
+    </div>
+  </div>
+
+  <script>
+    function loadMessages() {
+      ['me', 'her'].forEach(side => {
+        const box = document.getElementById(side + '-box');
+        const messages = JSON.parse(localStorage.getItem(side + '-messages')) || [];
+        box.innerHTML = '';
+        messages.forEach((msg, i) => {
+          const div = document.createElement('div');
+          div.className = 'message';
+          div.innerHTML = `
+            <div contenteditable="false">${msg.text}</div>
+            <small>${msg.date}</small>
+            <button class="edit-btn" onclick="editMessage('${side}', ${i})">Edit</button>
+            <button class="delete-btn" onclick="deleteMessage('${side}', ${i})">Delete</button>
+          `;
+          box.appendChild(div);
+        });
+      });
+    }
+
+    function addMessage(side) {
+      const textarea = document.getElementById(side + '-msg');
+      const msg = textarea.value.trim();
+      if (!msg) return;
+      const date = new Date().toLocaleString();
+      const messages = JSON.parse(localStorage.getItem(side + '-messages')) || [];
+      messages.push({ text: msg, date });
+      localStorage.setItem(side + '-messages', JSON.stringify(messages));
+      textarea.value = '';
+      loadMessages();
+    }
+
+    function deleteMessage(side, index) {
+      const messages = JSON.parse(localStorage.getItem(side + '-messages')) || [];
+      messages.splice(index, 1);
+      localStorage.setItem(side + '-messages', JSON.stringify(messages));
+      loadMessages();
+    }
+
+    function editMessage(side, index) {
+      const messages = JSON.parse(localStorage.getItem(side + '-messages')) || [];
+      const newText = prompt('Edit your message:', messages[index].text);
+      if (newText !== null) {
+        messages[index].text = newText;
+        localStorage.setItem(side + '-messages', JSON.stringify(messages));
+        loadMessages();
+      }
+    }
+
+    window.onload = loadMessages;
+  </script>
+</body>
+</html>
